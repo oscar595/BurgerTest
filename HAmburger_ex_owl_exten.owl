@@ -1,0 +1,406 @@
+Prefix(:=<http://www.semanticweb.org/oscardias/ontologies/2019/10/untitled-ontology-21#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/oscardias/ontologies/2019/10/HAmburger_ex_owl_exten.owl>
+
+Declaration(Class(:AmericanCheeseTopping))
+Declaration(Class(:AnyCheeseBurger))
+Declaration(Class(:Bacon))
+Declaration(Class(:BaconCheeseBurger))
+Declaration(Class(:Barbecue))
+Declaration(Class(:Beef))
+Declaration(Class(:BeefBurger))
+Declaration(Class(:BeefFreeBurger))
+Declaration(Class(:Buns))
+Declaration(Class(:CheddarCheese))
+Declaration(Class(:CheeseBurger))
+Declaration(Class(:CheeseTopping))
+Declaration(Class(:ChiliesTopping))
+Declaration(Class(:Hamburger))
+Declaration(Class(:Hot))
+Declaration(Class(:JalapenosTopping))
+Declaration(Class(:Kaiser_Rolls))
+Declaration(Class(:Ketchup))
+Declaration(Class(:LettuceTopping))
+Declaration(Class(:Mayonnaise))
+Declaration(Class(:Meat))
+Declaration(Class(:Mild))
+Declaration(Class(:MozzarellaCheeseTopping))
+Declaration(Class(:MushroomsTopping))
+Declaration(Class(:Mustard))
+Declaration(Class(:NamedBurgers))
+Declaration(Class(:Onion_Rolls))
+Declaration(Class(:PepperJackCheeseTopping))
+Declaration(Class(:PicklesTopping))
+Declaration(Class(:Potato_Rolls))
+Declaration(Class(:Pretzel_Rolls))
+Declaration(Class(:Proteins))
+Declaration(Class(:Red_OnionTopping))
+Declaration(Class(:Sauce))
+Declaration(Class(:Sesame_Seed_Rolls))
+Declaration(Class(:Sliced_Rolls))
+Declaration(Class(:SpicinessValuePartition))
+Declaration(Class(:SpicyBurger))
+Declaration(Class(:SpicyCowboyBaconBurger))
+Declaration(Class(:SpinachTopping))
+Declaration(Class(:SwissCheeseTopping))
+Declaration(Class(:TomatoTopping))
+Declaration(Class(:Topping))
+Declaration(Class(:Turkey))
+Declaration(Class(:ValueParition))
+Declaration(Class(:VegetableTopping))
+Declaration(Class(:Veggie))
+Declaration(Class(:VeggieBurger))
+Declaration(ObjectProperty(:hasBuns))
+Declaration(ObjectProperty(:hasIngredient))
+Declaration(ObjectProperty(:hasProtein))
+Declaration(ObjectProperty(:hasSauce))
+Declaration(ObjectProperty(:hasSpiciness))
+Declaration(ObjectProperty(:hasTopping))
+Declaration(ObjectProperty(:isBunsOf))
+Declaration(ObjectProperty(:isIngredientOf))
+Declaration(ObjectProperty(:isProteinOf))
+Declaration(ObjectProperty(:isSauceOf))
+Declaration(ObjectProperty(:isToppingOf))
+Declaration(DataProperty(:hasCalorificContentValue))
+Declaration(NamedIndividual(:ExampleCheeseBurger))
+Declaration(NamedIndividual(:ExampleVeggiBurger))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: :hasBuns (:hasBuns)
+
+SubObjectPropertyOf(:hasBuns :hasIngredient)
+InverseObjectProperties(:hasBuns :isBunsOf)
+FunctionalObjectProperty(:hasBuns)
+ObjectPropertyDomain(:hasBuns :Hamburger)
+ObjectPropertyRange(:hasBuns :Buns)
+
+# Object Property: :hasIngredient (:hasIngredient)
+
+InverseObjectProperties(:hasIngredient :isIngredientOf)
+TransitiveObjectProperty(:hasIngredient)
+
+# Object Property: :hasProtein (:hasProtein)
+
+SubObjectPropertyOf(:hasProtein :hasIngredient)
+InverseObjectProperties(:hasProtein :isProteinOf)
+ObjectPropertyDomain(:hasProtein :Hamburger)
+ObjectPropertyRange(:hasProtein :Proteins)
+
+# Object Property: :hasSauce (:hasSauce)
+
+SubObjectPropertyOf(:hasSauce :hasIngredient)
+InverseObjectProperties(:hasSauce :isSauceOf)
+ObjectPropertyDomain(:hasSauce :Hamburger)
+ObjectPropertyRange(:hasSauce :Sauce)
+
+# Object Property: :hasSpiciness (:hasSpiciness)
+
+FunctionalObjectProperty(:hasSpiciness)
+ObjectPropertyRange(:hasSpiciness :SpicinessValuePartition)
+
+# Object Property: :hasTopping (:hasTopping)
+
+SubObjectPropertyOf(:hasTopping :hasIngredient)
+InverseObjectProperties(:hasTopping :isToppingOf)
+ObjectPropertyDomain(:hasTopping :Hamburger)
+ObjectPropertyRange(:hasTopping :Topping)
+
+# Object Property: :isBunsOf (:isBunsOf)
+
+ObjectPropertyDomain(:isBunsOf :Buns)
+ObjectPropertyRange(:isBunsOf :Hamburger)
+
+# Object Property: :isIngredientOf (:isIngredientOf)
+
+TransitiveObjectProperty(:isIngredientOf)
+
+# Object Property: :isProteinOf (:isProteinOf)
+
+SubObjectPropertyOf(:isProteinOf :isIngredientOf)
+ObjectPropertyDomain(:isProteinOf :Proteins)
+ObjectPropertyRange(:isProteinOf :Hamburger)
+
+# Object Property: :isSauceOf (:isSauceOf)
+
+SubObjectPropertyOf(:isSauceOf :isIngredientOf)
+ObjectPropertyDomain(:isSauceOf :Sauce)
+ObjectPropertyRange(:isSauceOf :Hamburger)
+
+# Object Property: :isToppingOf (:isToppingOf)
+
+SubObjectPropertyOf(:isToppingOf :isIngredientOf)
+ObjectPropertyDomain(:isToppingOf :Topping)
+ObjectPropertyRange(:isToppingOf :Hamburger)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: :hasCalorificContentValue (:hasCalorificContentValue)
+
+FunctionalDataProperty(:hasCalorificContentValue)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :AmericanCheeseTopping (:AmericanCheeseTopping)
+
+SubClassOf(:AmericanCheeseTopping :CheeseTopping)
+
+# Class: :AnyCheeseBurger (:AnyCheeseBurger)
+
+EquivalentClasses(:AnyCheeseBurger ObjectIntersectionOf(:Hamburger ObjectSomeValuesFrom(:hasTopping :CheeseTopping)))
+
+# Class: :Bacon (:Bacon)
+
+SubClassOf(:Bacon :Meat)
+
+# Class: :BaconCheeseBurger (:BaconCheeseBurger)
+
+AnnotationAssertion(rdfs:comment :BaconCheeseBurger "Hamburger with bacon and cheese is a \"bacon cheeseburger\", which became an official menu item at an A&W Restaurant owned by Dale Mulder in Lansing, Michigan in 1963.[6][7] Hamburgers with bacon but no cheese may be referred to as \"bacon burgers\"
+-Referenced from WikiPedia
+-https://en.wikipedia.org/wiki/List_of_hamburgers")
+SubClassOf(:BaconCheeseBurger :NamedBurgers)
+SubClassOf(:BaconCheeseBurger ObjectSomeValuesFrom(:hasTopping :LettuceTopping))
+SubClassOf(:BaconCheeseBurger ObjectSomeValuesFrom(:hasTopping :PicklesTopping))
+SubClassOf(:BaconCheeseBurger ObjectSomeValuesFrom(:hasTopping :Red_OnionTopping))
+SubClassOf(:BaconCheeseBurger ObjectSomeValuesFrom(:hasTopping :TomatoTopping))
+SubClassOf(:BaconCheeseBurger ObjectAllValuesFrom(:hasProtein :Beef))
+SubClassOf(:BaconCheeseBurger ObjectExactCardinality(1 :hasTopping :CheeseTopping))
+
+# Class: :Barbecue (:Barbecue)
+
+SubClassOf(:Barbecue :Sauce)
+
+# Class: :Beef (:Beef)
+
+SubClassOf(:Beef :Proteins)
+
+# Class: :BeefBurger (:BeefBurger)
+
+EquivalentClasses(:BeefBurger ObjectIntersectionOf(:Hamburger ObjectAllValuesFrom(:hasProtein :Beef)))
+
+# Class: :BeefFreeBurger (:BeefFreeBurger)
+
+EquivalentClasses(:BeefFreeBurger ObjectIntersectionOf(:Hamburger ObjectAllValuesFrom(:hasProtein :Veggie)))
+SubClassOf(:BeefFreeBurger :Hamburger)
+
+# Class: :Buns (:Buns)
+
+
+# Class: :CheddarCheese (:CheddarCheese)
+
+SubClassOf(:CheddarCheese :CheeseTopping)
+
+# Class: :CheeseBurger (:CheeseBurger)
+
+AnnotationAssertion(rdfs:comment :CheeseBurger "\"Hamburger accompanied with melted cheese. The term itself is a portmanteau of the words \"cheese\" and \"hamburger.\" The cheese is usually sliced, then added a short time before the hamburger finishes cooking to allow it to melt. In fast food restaurants, the cheese that is added to a cheeseburger is typically American cheese, but there are many other variations. Mozzarella, blue cheese, Swiss cheese, pepper jack, and especially cheddar are popular choices.\"
+-Referenced from WikiPedia 
+https://en.wikipedia.org/wiki/List_of_hamburgers")
+SubClassOf(:CheeseBurger :NamedBurgers)
+SubClassOf(:CheeseBurger ObjectSomeValuesFrom(:hasSauce :Mayonnaise))
+SubClassOf(:CheeseBurger ObjectSomeValuesFrom(:hasTopping :LettuceTopping))
+SubClassOf(:CheeseBurger ObjectSomeValuesFrom(:hasTopping :PicklesTopping))
+SubClassOf(:CheeseBurger ObjectSomeValuesFrom(:hasTopping :Red_OnionTopping))
+SubClassOf(:CheeseBurger ObjectSomeValuesFrom(:hasTopping :TomatoTopping))
+SubClassOf(:CheeseBurger ObjectAllValuesFrom(:hasProtein :Beef))
+SubClassOf(:CheeseBurger ObjectExactCardinality(1 :hasTopping :CheeseTopping))
+
+# Class: :CheeseTopping (:CheeseTopping)
+
+SubClassOf(:CheeseTopping :Topping)
+
+# Class: :ChiliesTopping (:ChiliesTopping)
+
+SubClassOf(:ChiliesTopping :Topping)
+
+# Class: :Hamburger (:Hamburger)
+
+SubClassOf(:Hamburger ObjectSomeValuesFrom(:hasBuns :Buns))
+
+# Class: :Hot (:Hot)
+
+SubClassOf(:Hot :SpicinessValuePartition)
+DisjointClasses(:Hot :Mild)
+
+# Class: :JalapenosTopping (:JalapenosTopping)
+
+SubClassOf(:JalapenosTopping :ChiliesTopping)
+SubClassOf(:JalapenosTopping ObjectSomeValuesFrom(:hasSpiciness :Hot))
+
+# Class: :Kaiser_Rolls (:Kaiser_Rolls)
+
+SubClassOf(:Kaiser_Rolls :Buns)
+
+# Class: :Ketchup (:Ketchup)
+
+SubClassOf(:Ketchup :Sauce)
+
+# Class: :LettuceTopping (:LettuceTopping)
+
+SubClassOf(:LettuceTopping :VegetableTopping)
+
+# Class: :Mayonnaise (:Mayonnaise)
+
+SubClassOf(:Mayonnaise :Sauce)
+
+# Class: :Meat (:Meat)
+
+SubClassOf(:Meat :Topping)
+
+# Class: :Mild (:Mild)
+
+SubClassOf(:Mild :SpicinessValuePartition)
+
+# Class: :MozzarellaCheeseTopping (:MozzarellaCheeseTopping)
+
+SubClassOf(:MozzarellaCheeseTopping :CheeseTopping)
+
+# Class: :MushroomsTopping (:MushroomsTopping)
+
+SubClassOf(:MushroomsTopping :VegetableTopping)
+
+# Class: :Mustard (:Mustard)
+
+SubClassOf(:Mustard :Sauce)
+
+# Class: :NamedBurgers (:NamedBurgers)
+
+SubClassOf(:NamedBurgers :Hamburger)
+
+# Class: :Onion_Rolls (:Onion_Rolls)
+
+SubClassOf(:Onion_Rolls :Buns)
+
+# Class: :PepperJackCheeseTopping (:PepperJackCheeseTopping)
+
+SubClassOf(:PepperJackCheeseTopping :CheeseTopping)
+
+# Class: :PicklesTopping (:PicklesTopping)
+
+SubClassOf(:PicklesTopping :VegetableTopping)
+
+# Class: :Potato_Rolls (:Potato_Rolls)
+
+SubClassOf(:Potato_Rolls :Buns)
+
+# Class: :Pretzel_Rolls (:Pretzel_Rolls)
+
+SubClassOf(:Pretzel_Rolls :Buns)
+
+# Class: :Proteins (:Proteins)
+
+
+# Class: :Red_OnionTopping (:Red_OnionTopping)
+
+SubClassOf(:Red_OnionTopping :VegetableTopping)
+
+# Class: :Sauce (:Sauce)
+
+
+# Class: :Sesame_Seed_Rolls (:Sesame_Seed_Rolls)
+
+SubClassOf(:Sesame_Seed_Rolls :Buns)
+
+# Class: :Sliced_Rolls (:Sliced_Rolls)
+
+SubClassOf(:Sliced_Rolls :Buns)
+
+# Class: :SpicinessValuePartition (:SpicinessValuePartition)
+
+EquivalentClasses(:SpicinessValuePartition ObjectUnionOf(:Hot :Mild))
+SubClassOf(:SpicinessValuePartition :ValueParition)
+
+# Class: :SpicyBurger (:SpicyBurger)
+
+EquivalentClasses(:SpicyBurger ObjectIntersectionOf(:Hamburger ObjectSomeValuesFrom(:hasTopping ObjectIntersectionOf(:Topping ObjectSomeValuesFrom(:hasSpiciness :Hot)))))
+
+# Class: :SpicyCowboyBaconBurger (:SpicyCowboyBaconBurger)
+
+AnnotationAssertion(rdfs:comment :SpicyCowboyBaconBurger "Spicy Cowboy Bacon Burgers Recipe: Hamburger patties made with ground beef, jalapeno, and diced bacon, grilled and stacked with spicy cheese, barbecue sauce
+-https://www.aspicyperspective.com/spicy-cowboy-bacon-burgers/")
+SubClassOf(:SpicyCowboyBaconBurger :NamedBurgers)
+SubClassOf(:SpicyCowboyBaconBurger ObjectSomeValuesFrom(:hasSauce :Barbecue))
+SubClassOf(:SpicyCowboyBaconBurger ObjectSomeValuesFrom(:hasTopping :Bacon))
+SubClassOf(:SpicyCowboyBaconBurger ObjectSomeValuesFrom(:hasTopping :JalapenosTopping))
+SubClassOf(:SpicyCowboyBaconBurger ObjectSomeValuesFrom(:hasTopping :LettuceTopping))
+SubClassOf(:SpicyCowboyBaconBurger ObjectSomeValuesFrom(:hasTopping :PepperJackCheeseTopping))
+SubClassOf(:SpicyCowboyBaconBurger ObjectSomeValuesFrom(:hasTopping :PicklesTopping))
+SubClassOf(:SpicyCowboyBaconBurger ObjectAllValuesFrom(:hasProtein :Beef))
+
+# Class: :SpinachTopping (:SpinachTopping)
+
+SubClassOf(:SpinachTopping :VegetableTopping)
+
+# Class: :SwissCheeseTopping (:SwissCheeseTopping)
+
+SubClassOf(:SwissCheeseTopping :CheeseTopping)
+
+# Class: :TomatoTopping (:TomatoTopping)
+
+SubClassOf(:TomatoTopping :VegetableTopping)
+
+# Class: :Topping (:Topping)
+
+
+# Class: :Turkey (:Turkey)
+
+SubClassOf(:Turkey :Proteins)
+
+# Class: :VegetableTopping (:VegetableTopping)
+
+SubClassOf(:VegetableTopping :Topping)
+
+# Class: :Veggie (:Veggie)
+
+SubClassOf(:Veggie :Proteins)
+
+# Class: :VeggieBurger (:VeggieBurger)
+
+AnnotationAssertion(rdfs:comment :VeggieBurger "Veggie burger, garden burger, or tofu burger uses a meat analogue, a meat substitute such as tofu, textured vegetable protein, seitan (wheat gluten), Quorn, beans, grains or an assortment of vegetables, which are ground up and formed into patties.
+-Referenced From WikiPedia
+-https://en.wikipedia.org/wiki/List_of_hamburgers")
+SubClassOf(:VeggieBurger :NamedBurgers)
+SubClassOf(:VeggieBurger ObjectSomeValuesFrom(:hasTopping :LettuceTopping))
+SubClassOf(:VeggieBurger ObjectSomeValuesFrom(:hasTopping :PicklesTopping))
+SubClassOf(:VeggieBurger ObjectSomeValuesFrom(:hasTopping :Red_OnionTopping))
+SubClassOf(:VeggieBurger ObjectSomeValuesFrom(:hasTopping :TomatoTopping))
+SubClassOf(:VeggieBurger ObjectAllValuesFrom(:hasProtein :Veggie))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :ExampleCheeseBurger (:ExampleCheeseBurger)
+
+ClassAssertion(:CheeseBurger :ExampleCheeseBurger)
+DataPropertyAssertion(:hasCalorificContentValue :ExampleCheeseBurger "350"^^xsd:integer)
+
+# Individual: :ExampleVeggiBurger (:ExampleVeggiBurger)
+
+ClassAssertion(:VeggieBurger :ExampleVeggiBurger)
+DataPropertyAssertion(:hasCalorificContentValue :ExampleVeggiBurger "260"^^xsd:integer)
+
+
+DisjointClasses(:AmericanCheeseTopping :MozzarellaCheeseTopping :PepperJackCheeseTopping :SwissCheeseTopping)
+DisjointClasses(:Barbecue :Ketchup :Mayonnaise :Mustard)
+DisjointClasses(:Beef :Turkey :Veggie)
+DisjointClasses(:Buns :Hamburger :Proteins :Sauce :Topping)
+DisjointClasses(:CheeseTopping :ChiliesTopping :Meat :VegetableTopping)
+DisjointClasses(:Kaiser_Rolls :Onion_Rolls :Potato_Rolls :Pretzel_Rolls :Sesame_Seed_Rolls :Sliced_Rolls)
+DisjointClasses(:LettuceTopping :MushroomsTopping :PicklesTopping :Red_OnionTopping :SpinachTopping :TomatoTopping)
+)
